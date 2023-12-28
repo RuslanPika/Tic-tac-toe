@@ -22,10 +22,11 @@ while loop:
             pos = pygame.mouse.get_pos()
             if game_table[pos[1] // 100][pos[0]//100] == '':
                 game_table[pos[1] // 100][pos[0]//100] = 'X'
-                x, y = random.randint(0, 2), random.randint(0, 2)
-                while game_table[x][y] != '':
+                if (game_table[0].count('0')+ game_table[1].count('0') + game_table[2].count('0')) < 4:
                     x, y = random.randint(0, 2), random.randint(0, 2)
-                game_table[x][y] = '0'
+                    while game_table[x][y] != '' :
+                        x, y = random.randint(0, 2), random.randint(0, 2)
+                    game_table[x][y] = '0'
 
             player_win = check_win(game_table, 'X')
             bot_win = check_win(game_table, '0')
@@ -36,7 +37,7 @@ while loop:
                 else:
                     pygame.display.set_caption('Победил бот')
             elif game_table[0].count('X') + game_table[0].count('0') + game_table[1].count('X') + game_table[1].count('0') + \
-                    game_table[2].count('X') + game_table[2].count('0') == 8:
+                    game_table[2].count('X') + game_table[2].count('0') == 9:
                 game_over = True
                 pygame.display.set_caption('Ничья')
 
